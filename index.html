@@ -1,10 +1,727 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Akshay Krishnakumar</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Akshay Krishnakumar | Biomedical Sensing & Bioelectronics</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #07111f;
+  color: #f7fbff;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ---------- BACKGROUND ---------- */
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(34,211,238,.13), transparent 28%),
+    radial-gradient(circle at 82% 18%, rgba(139,92,246,.14), transparent 28%),
+    radial-gradient(circle at 70% 80%, rgba(20,184,166,.10), transparent 30%);
+  pointer-events: none;
+  z-index: -3;
+}
+
+.grid-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  opacity: .22;
+  background-image:
+    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+  background-size: 55px 55px;
+}
+
+/* ---------- NAV ---------- */
+
+nav {
+  width: min(1180px, 92%);
+  margin: 24px auto;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: rgba(8, 20, 35, .66);
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 18px;
+  backdrop-filter: blur(20px);
+
+  position: sticky;
+  top: 16px;
+  z-index: 100;
+}
+
+.logo {
+  font-weight: 800;
+  letter-spacing: -.03em;
+  font-size: 20px;
+}
+
+.logo span {
+  color: #67e8f9;
+}
+
+nav ul {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+}
+
+nav a {
+  color: #aebed0;
+  text-decoration: none;
+  font-size: 14px;
+  transition: .25s;
+}
+
+nav a:hover {
+  color: white;
+}
+
+/* ---------- HERO ---------- */
+
+.hero {
+  width: min(1180px, 92%);
+  margin: 80px auto 50px;
+  min-height: 72vh;
+
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  align-items: center;
+  gap: 65px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+
+  padding: 7px 13px;
+  border-radius: 100px;
+  border: 1px solid rgba(103,232,249,.28);
+  background: rgba(103,232,249,.07);
+
+  color: #8ceeff;
+  font-size: 13px;
+  margin-bottom: 22px;
+}
+
+.tag-dot {
+  width: 7px;
+  height: 7px;
+  background: #5eead4;
+  border-radius: 50%;
+  box-shadow: 0 0 14px #5eead4;
+}
+
+h1 {
+  font-size: clamp(54px, 7vw, 92px);
+  line-height: .96;
+  letter-spacing: -.055em;
+  margin-bottom: 28px;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg,#67e8f9,#a78bfa,#5eead4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+  max-width: 650px;
+  font-size: 19px;
+  color: #9fb0c3;
+  margin-bottom: 34px;
+}
+
+.buttons {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 13px 21px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 650;
+  font-size: 14px;
+  transition: .25s;
+}
+
+.btn-primary {
+  color: #07111f;
+  background: linear-gradient(120deg,#67e8f9,#5eead4);
+  box-shadow: 0 10px 35px rgba(94,234,212,.18);
+}
+
+.btn-secondary {
+  color: white;
+  border: 1px solid rgba(255,255,255,.15);
+  background: rgba(255,255,255,.04);
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+}
+
+/* ---------- HERO GRAPHIC ---------- */
+
+.visual {
+  height: 520px;
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.orbit {
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  border: 1px solid rgba(103,232,249,.18);
+  position: absolute;
+  animation: spin 18s linear infinite;
+}
+
+.orbit.two {
+  width: 310px;
+  height: 310px;
+  border-color: rgba(167,139,250,.20);
+  animation-direction: reverse;
+  animation-duration: 13s;
+}
+
+.orbit::after {
+  content: "";
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  position: absolute;
+  top: 28px;
+  left: 70px;
+  background: #67e8f9;
+  box-shadow: 0 0 25px #67e8f9;
+}
+
+.orbit.two::after {
+  background: #a78bfa;
+  box-shadow: 0 0 25px #a78bfa;
+}
+
+.core {
+  width: 245px;
+  height: 245px;
+  border-radius: 44px;
+
+  background:
+    linear-gradient(145deg,rgba(103,232,249,.14),rgba(167,139,250,.08)),
+    rgba(13,30,48,.78);
+
+  border: 1px solid rgba(255,255,255,.12);
+  backdrop-filter: blur(30px);
+
+  display: grid;
+  place-items: center;
+  transform: rotate(8deg);
+  box-shadow:
+    0 40px 100px rgba(0,0,0,.35),
+    inset 0 1px rgba(255,255,255,.12);
+}
+
+.sensor {
+  width: 115px;
+  height: 115px;
+  border-radius: 28px;
+  background: #0c1727;
+  border: 1px solid rgba(103,232,249,.28);
+  position: relative;
+  overflow: hidden;
+}
+
+.sensor::before {
+  content: "";
+  position: absolute;
+  width: 170%;
+  height: 3px;
+  background: linear-gradient(90deg,transparent,#67e8f9,transparent);
+  top: 50%;
+  left: -35%;
+  animation: scan 2.4s ease-in-out infinite;
+  box-shadow: 0 0 14px #67e8f9;
+}
+
+.sensor::after {
+  content: "";
+  position: absolute;
+  inset: 24px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle,#5eead4 0 8%,transparent 9%),
+    repeating-radial-gradient(
+      circle,
+      rgba(103,232,249,.3) 0 2px,
+      transparent 3px 10px
+    );
+}
+
+.floating-card {
+  position: absolute;
+  padding: 13px 17px;
+  border-radius: 14px;
+  background: rgba(10,24,40,.76);
+  border: 1px solid rgba(255,255,255,.11);
+  backdrop-filter: blur(20px);
+  color: #bad0e5;
+  font-size: 12px;
+  box-shadow: 0 15px 50px rgba(0,0,0,.25);
+}
+
+.fc1 { top: 80px; right: -5px; }
+.fc2 { bottom: 105px; left: -15px; }
+.fc3 { bottom: 35px; right: 25px; }
+
+.floating-card b {
+  color: white;
+  display: block;
+  font-size: 14px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes scan {
+  0%,100% { transform: translateY(-38px); opacity: .35;}
+  50% { transform: translateY(38px); opacity: 1;}
+}
+
+/* ---------- CONTENT ---------- */
+
+section {
+  width: min(1180px, 92%);
+  margin: 130px auto;
+}
+
+.section-label {
+  color: #67e8f9;
+  font-size: 13px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+h2 {
+  font-size: clamp(36px,5vw,58px);
+  letter-spacing: -.045em;
+  line-height: 1.05;
+  margin-bottom: 18px;
+}
+
+.section-intro {
+  max-width: 690px;
+  color: #94a8bc;
+  font-size: 17px;
+  margin-bottom: 45px;
+}
+
+/* ---------- RESEARCH CARDS ---------- */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.card {
+  min-height: 260px;
+  padding: 30px;
+  border-radius: 24px;
+
+  background: linear-gradient(
+    145deg,
+    rgba(255,255,255,.075),
+    rgba(255,255,255,.025)
+  );
+
+  border: 1px solid rgba(255,255,255,.10);
+  position: relative;
+  overflow: hidden;
+  transition: .35s;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(103,232,249,.35);
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  right: -80px;
+  top: -80px;
+  background: rgba(103,232,249,.08);
+  filter: blur(5px);
+}
+
+.icon {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  margin-bottom: 42px;
+
+  background: rgba(103,232,249,.08);
+  border: 1px solid rgba(103,232,249,.16);
+  font-size: 23px;
+}
+
+.card h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.card p {
+  color: #93a7bb;
+  max-width: 460px;
+}
+
+/* ---------- NUMBERS ---------- */
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 14px;
+}
+
+.stat {
+  padding: 28px 22px;
+  border-radius: 20px;
+  background: rgba(255,255,255,.045);
+  border: 1px solid rgba(255,255,255,.09);
+}
+
+.stat strong {
+  display: block;
+  font-size: 38px;
+  letter-spacing: -.04em;
+  color: #8ceeff;
+}
+
+.stat span {
+  color: #8fa3b8;
+  font-size: 13px;
+}
+
+/* ---------- FOOTER ---------- */
+
+footer {
+  width: min(1180px,92%);
+  margin: 120px auto 30px;
+  padding: 35px 0;
+  border-top: 1px solid rgba(255,255,255,.09);
+
+  display: flex;
+  justify-content: space-between;
+  color: #71869b;
+  font-size: 13px;
+}
+
+/* ---------- MOBILE ---------- */
+
+@media(max-width:850px) {
+
+  nav ul {
+    display: none;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    margin-top: 55px;
+  }
+
+  .visual {
+    height: 430px;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .stats {
+    grid-template-columns: repeat(2,1fr);
+  }
+
+  h1 {
+    font-size: 58px;
+  }
+}
+
+</style>
 </head>
+
+
 <body>
-  <h1>Akshay Krishnakumar</h1>
-  <p>Website under development.</p>
+
+<div class="grid-bg"></div>
+
+<nav>
+
+  <div class="logo">
+    AK<span>.</span>
+  </div>
+
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#collaborations">Collaborations</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+
+</nav>
+
+
+<main>
+
+<section class="hero">
+
+  <div>
+
+    <div class="tag">
+      <span class="tag-dot"></span>
+      Biomedical Engineering · Purdue University
+    </div>
+
+    <h1>
+      Akshay<br>
+      <span class="gradient-text">Krishnakumar.</span>
+    </h1>
+
+    <p>
+      Developing intelligent biomedical sensing and therapeutic systems
+      across bioelectronics, optical sensing, electrochemical biosensors,
+      advanced materials and translational medical technologies.
+    </p>
+
+    <div class="buttons">
+      <a href="#research" class="btn btn-primary">Explore my research →</a>
+      <a href="#publications" class="btn btn-secondary">Publications</a>
+    </div>
+
+  </div>
+
+
+  <div class="visual">
+
+    <div class="orbit"></div>
+    <div class="orbit two"></div>
+
+    <div class="core">
+      <div class="sensor"></div>
+    </div>
+
+    <div class="floating-card fc1">
+      <b>OPTICAL</b>
+      multispectral sensing
+    </div>
+
+    <div class="floating-card fc2">
+      <b>BIOELECTRONICS</b>
+      intelligent interfaces
+    </div>
+
+    <div class="floating-card fc3">
+      <b>BIOSENSORS</b>
+      quantitative detection
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<section id="about">
+
+  <div class="section-label">About</div>
+
+  <h2>
+    Engineering technology at the
+    <span class="gradient-text">biology–device interface.</span>
+  </h2>
+
+  <p class="section-intro">
+    My research combines electrical engineering, biomedical engineering,
+    materials science and biological validation to develop technologies
+    that move from fundamental sensing concepts toward real-world
+    biomedical applications.
+  </p>
+
+</section>
+
+
+
+<section id="research">
+
+  <div class="section-label">Research</div>
+
+  <h2>Research platforms.</h2>
+
+  <p class="section-intro">
+    Multidisciplinary systems spanning sensing, materials, devices,
+    biological interfaces and therapeutic technologies.
+  </p>
+
+
+  <div class="cards">
+
+    <div class="card">
+      <div class="icon">◉</div>
+      <h3>Optical & Multispectral Sensing</h3>
+      <p>
+        Optical platforms using visible and near-infrared wavelengths,
+        photodetection and quantitative biomedical signal acquisition.
+      </p>
+    </div>
+
+
+    <div class="card">
+      <div class="icon">⌁</div>
+      <h3>Electrochemical Biosensors</h3>
+      <p>
+        Electrochemical sensing interfaces integrating electrode
+        engineering, surface modification and quantitative characterization.
+      </p>
+    </div>
+
+
+    <div class="card">
+      <div class="icon">◇</div>
+      <h3>Biointegrated Devices</h3>
+      <p>
+        Wearable, flexible and miniaturized systems designed to interface
+        directly with complex biological environments.
+      </p>
+    </div>
+
+
+    <div class="card">
+      <div class="icon">✦</div>
+      <h3>Smart Therapeutic Systems</h3>
+      <p>
+        Sensor-guided technologies connecting disease monitoring with
+        responsive and targeted therapeutic delivery.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<section id="publications">
+
+  <div class="section-label">Research Output</div>
+
+  <h2>From prototypes to validation.</h2>
+
+  <p class="section-intro">
+    Research spanning biomedical sensing, infection monitoring,
+    bioelectronics, smart therapeutics and scalable device manufacturing.
+  </p>
+
+
+  <div class="stats">
+
+    <div class="stat">
+      <strong>25+</strong>
+      <span>Peer-reviewed publications</span>
+    </div>
+
+    <div class="stat">
+      <strong>14</strong>
+      <span>h-index</span>
+    </div>
+
+    <div class="stat">
+      <strong>500+</strong>
+      <span>Citations</span>
+    </div>
+
+    <div class="stat">
+      <strong>4+</strong>
+      <span>Biomedical technology areas</span>
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<section id="collaborations">
+
+  <div class="section-label">Translation</div>
+
+  <h2>
+    Research beyond the
+    <span class="gradient-text">laboratory.</span>
+  </h2>
+
+  <p class="section-intro">
+    My work includes multidisciplinary academic research, translational
+    biomedical development and collaborations connecting fundamental
+    engineering with clinically relevant applications.
+  </p>
+
+</section>
+
+
+
+<section id="contact">
+
+  <div class="section-label">Contact</div>
+
+  <h2>Let’s build what comes next.</h2>
+
+  <p class="section-intro">
+    Biomedical sensing · bioelectronics · optical systems ·
+    electrochemical biosensors · translational medical devices
+  </p>
+
+</section>
+
+</main>
+
+
+<footer>
+  <span>© 2026 Akshay Krishnakumar</span>
+  <span>Purdue University · Electrical & Computer Engineering</span>
+</footer>
+
 </body>
 </html>
